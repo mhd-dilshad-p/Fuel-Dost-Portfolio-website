@@ -91,15 +91,9 @@ class FooterSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildLinkColumn(context, 'Product', [
-          _LinkItem('Features', '#features'),
-          _LinkItem('How It Works', '#how-it-works'),
-          _LinkItem('Download', '#download'),
-        ]),
         _buildLinkColumn(context, 'Support', [
           _LinkItem('Privacy Policy', '#privacy', url: 'https://www.termsfeed.com/live/a0e48248-56ac-4dd9-8d0e-e216118971a9'),
-          _LinkItem('Terms of Use', '#terms'),
-          _LinkItem('Contact support', '#support'),
+         
         ]),
       ],
     );
