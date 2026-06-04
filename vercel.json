@@ -3,5 +3,16 @@
     "silent": true
   },
   "buildCommand": "flutter build web --release",
-  "outputDirectory": "build/web"
+  "outputDirectory": "build/web",
+  "headers": [
+    {
+      "source": "/app-ads.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    }
+  ]
 }
