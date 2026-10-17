@@ -22,12 +22,14 @@ class _ScreenshotsSectionState extends State<ScreenshotsSection> {
     {
       'image': AppStrings.screenshotTripCost,
       'title': 'Accurate Cost Breakdown',
-      'desc': 'Get exact pricing details calculated for your destination instantly.',
+      'desc':
+          'Get exact pricing details calculated for your destination instantly.',
     },
     {
       'image': AppStrings.screenshotRouteMap,
       'title': 'Visual Map Routes',
-      'desc': 'Interactive maps to visualize your trip path and distance constraints.',
+      'desc':
+          'Interactive maps to visualize your trip path and distance constraints.',
     },
     {
       'image': AppStrings.screenshotExpenses,
@@ -37,12 +39,14 @@ class _ScreenshotsSectionState extends State<ScreenshotsSection> {
     {
       'image': AppStrings.screenshotInsights,
       'title': 'Insight analytics graphs',
-      'desc': 'Analyze cost trends and see where you can optimize fuel efficiency.',
+      'desc':
+          'Analyze cost trends and see where you can optimize fuel efficiency.',
     },
     {
       'image': AppStrings.screenshotRecommendations,
       'title': 'Smart Recommendations',
-      'desc': 'AI-driven tips for vehicle selection, routing choices, and driving style.',
+      'desc':
+          'AI-driven tips for vehicle selection, routing choices, and driving style.',
     },
   ];
 
@@ -76,7 +80,9 @@ class _ScreenshotsSectionState extends State<ScreenshotsSection> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final bool isMobile = width < 600;
-    final double horizontalPadding = width > 1200 ? (width - 1200) / 2 + 24 : 24;
+    final double horizontalPadding = width > 1200
+        ? (width - 1200) / 2 + 24
+        : 24;
 
     return Container(
       color: Colors.transparent,

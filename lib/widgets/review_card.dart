@@ -24,7 +24,8 @@ class ReviewCard extends StatefulWidget {
   State<ReviewCard> createState() => _ReviewCardState();
 }
 
-class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateMixin {
+class _ReviewCardState extends State<ReviewCard>
+    with SingleTickerProviderStateMixin {
   bool _isHovered = false;
   bool _isLiked = false;
   int _likesCount = 12;
@@ -36,12 +37,12 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
     super.initState();
     // Initialize random likes count based on hash code to keep it stable but dynamic
     _likesCount = (widget.name.hashCode % 18) + 4;
-    
+
     _likeController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 150),
     );
-    
+
     _likeScaleAnimation = TweenSequence<double>([
       TweenSequenceItem(tween: Tween<double>(begin: 1.0, end: 1.4), weight: 50),
       TweenSequenceItem(tween: Tween<double>(begin: 1.4, end: 1.0), weight: 50),
@@ -76,14 +77,13 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOutCubic,
         transform: _isHovered
-            ? (Matrix4.identity()
-              ..translate(0, -8, 0)
-              ..scale(1.02))
+            ? (Matrix4.diagonal3Values(1.02, 1.02, 1.0)
+                ..setTranslationRaw(0.0, -8.0, 0.0))
             : Matrix4.identity(),
         padding: const EdgeInsets.all(26),
         decoration: BoxDecoration(
-          color: _isHovered 
-              ? Colors.white 
+          color: _isHovered
+              ? Colors.white
               : AppColors.cardBackground.withValues(alpha: 0.95),
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
@@ -134,9 +134,13 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                         backgroundColor: Colors.white,
                         child: CircleAvatar(
                           radius: 18,
-                          backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+                          backgroundColor: AppColors.primary.withValues(
+                            alpha: 0.1,
+                          ),
                           child: Text(
-                            widget.name.isNotEmpty ? widget.name[0].toUpperCase() : 'U',
+                            widget.name.isNotEmpty
+                                ? widget.name[0].toUpperCase()
+                                : 'U',
                             style: GoogleFonts.sora(
                               color: AppColors.primary,
                               fontWeight: FontWeight.bold,
@@ -147,7 +151,7 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                       ),
                     ),
                     const SizedBox(width: 14),
-                    
+
                     // Name and Date
                     Expanded(
                       child: Column(
@@ -183,10 +187,13 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                         ],
                       ),
                     ),
-                    
+
                     // Playstore Badge icon
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 9,
+                        vertical: 5,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black.withValues(alpha: 0.05),
                         borderRadius: BorderRadius.circular(8),
@@ -219,9 +226,9 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 18),
-                
+
                 // Stars & Date Row
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -248,9 +255,9 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 14),
-                
+
                 // Review Text
                 Text(
                   '"${widget.reviewText}"',
@@ -263,13 +270,13 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                 ),
               ],
             ),
-            
+
             Column(
               children: [
                 const SizedBox(height: 16),
                 const Divider(height: 1, color: Color(0xFFF3F4F6)),
                 const SizedBox(height: 12),
-                
+
                 // Interactive bottom row
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,21 +288,24 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                         fontSize: 12,
                       ),
                     ),
-                    
+
                     // Helpful button
                     InkWell(
                       onTap: _handleLike,
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
-                          color: _isLiked 
-                              ? AppColors.primary.withValues(alpha: 0.08) 
+                          color: _isLiked
+                              ? AppColors.primary.withValues(alpha: 0.08)
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: _isLiked 
-                                ? AppColors.primary 
+                            color: _isLiked
+                                ? AppColors.primary
                                 : AppColors.divider.withValues(alpha: 0.8),
                             width: 1,
                           ),
@@ -306,8 +316,12 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                             ScaleTransition(
                               scale: _likeScaleAnimation,
                               child: Icon(
-                                _isLiked ? Icons.thumb_up_rounded : Icons.thumb_up_outlined,
-                                color: _isLiked ? AppColors.primary : AppColors.textSecondary,
+                                _isLiked
+                                    ? Icons.thumb_up_rounded
+                                    : Icons.thumb_up_outlined,
+                                color: _isLiked
+                                    ? AppColors.primary
+                                    : AppColors.textSecondary,
                                 size: 13,
                               ),
                             ),
@@ -315,9 +329,13 @@ class _ReviewCardState extends State<ReviewCard> with SingleTickerProviderStateM
                             Text(
                               'Helpful ($_likesCount)',
                               style: GoogleFonts.dmSans(
-                                color: _isLiked ? AppColors.primary : AppColors.textSecondary,
+                                color: _isLiked
+                                    ? AppColors.primary
+                                    : AppColors.textSecondary,
                                 fontSize: 12,
-                                fontWeight: _isLiked ? FontWeight.bold : FontWeight.normal,
+                                fontWeight: _isLiked
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
                               ),
                             ),
                           ],

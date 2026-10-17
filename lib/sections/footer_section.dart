@@ -13,7 +13,9 @@ class FooterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final bool isMobile = width < 768;
-    final double horizontalPadding = width > 1200 ? (width - 1200) / 2 + 24 : 24;
+    final double horizontalPadding = width > 1200
+        ? (width - 1200) / 2 + 24
+        : 24;
 
     return Container(
       color: Colors.transparent,
@@ -46,7 +48,7 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 60),
           Divider(color: Colors.white.withValues(alpha: 0.08), height: 1),
           const SizedBox(height: 30),
-          
+
           // Bottom credits
           isMobile
               ? Column(
@@ -58,10 +60,7 @@ class FooterSection extends StatelessWidget {
                 )
               : Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildCredits(),
-                    _buildSocials(),
-                  ],
+                  children: [_buildCredits(), _buildSocials()],
                 ),
         ],
       ),
@@ -92,14 +91,22 @@ class FooterSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildLinkColumn(context, 'Support', [
-          _LinkItem('Privacy Policy', '#privacy', url: 'https://www.termsfeed.com/live/a0e48248-56ac-4dd9-8d0e-e216118971a9'),
-         
+          _LinkItem(
+            'Privacy Policy',
+            '#privacy',
+            url:
+                'https://www.termsfeed.com/live/a0e48248-56ac-4dd9-8d0e-e216118971a9',
+          ),
         ]),
       ],
     );
   }
 
-  Widget _buildLinkColumn(BuildContext context, String title, List<_LinkItem> items) {
+  Widget _buildLinkColumn(
+    BuildContext context,
+    String title,
+    List<_LinkItem> items,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -157,15 +164,9 @@ class FooterSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildSocialIcon(
-          Icons.code,
-          AppStrings.githubUrl,
-        ),
+        _buildSocialIcon(Icons.code, AppStrings.githubUrl),
         const SizedBox(width: 12),
-        _buildSocialIcon(
-          Icons.work_outline,
-          AppStrings.linkedinUrl,
-        ),
+        _buildSocialIcon(Icons.work_outline, AppStrings.linkedinUrl),
       ],
     );
   }

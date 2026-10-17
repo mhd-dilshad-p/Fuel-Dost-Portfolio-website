@@ -20,10 +20,7 @@ class ScreenshotMockup extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF1E1E1E),
         borderRadius: BorderRadius.circular(40),
-        border: Border.all(
-          color: const Color(0xFF2C2C2C),
-          width: 8,
-        ),
+        border: Border.all(color: const Color(0xFF2C2C2C), width: 8),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.6),
@@ -73,7 +70,7 @@ class ScreenshotMockup extends StatelessWidget {
                 },
               ),
             ),
-            
+
             // Dynamic Island / Notch
             Align(
               alignment: Alignment.topCenter,

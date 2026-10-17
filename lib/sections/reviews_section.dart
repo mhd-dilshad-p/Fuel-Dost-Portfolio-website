@@ -30,7 +30,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       'name': 'Rahul Sharma',
       'avatar': '',
       'rating': 5.0,
-      'text': 'Honestly, this is so simple and useful. I travel daily between Noida and Gurgaon. Saving my vehicle details and getting the exact cost breakdown is incredibly accurate. 5/5 stars.',
+      'text':
+          'Honestly, this is so simple and useful. I travel daily between Noida and Gurgaon. Saving my vehicle details and getting the exact cost breakdown is incredibly accurate. 5/5 stars.',
       'tag': 'Verified Commuter',
       'date': '2 days ago',
       'categories': ['All', 'Accuracy 🎯', 'Commuters 🚗'],
@@ -39,7 +40,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       'name': 'Priya Patel',
       'avatar': '',
       'rating': 5.0,
-      'text': 'Amazing utility! Love that there is no sign-up or login wall. I just open it, enter details, and see how much I will spend. Perfect for planning weekend road trips with friends.',
+      'text':
+          'Amazing utility! Love that there is no sign-up or login wall. I just open it, enter details, and see how much I will spend. Perfect for planning weekend road trips with friends.',
       'tag': 'Verified Commuter',
       'date': '1 week ago',
       'categories': ['All', 'UI/UX 🎨'],
@@ -48,7 +50,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       'name': 'Amit Verma',
       'avatar': '',
       'rating': 5.0,
-      'text': 'Great UI design and completely ad-free. The offline functionality is perfect when traveling through remote highways with sketchy network coverage. Saved me multiple times.',
+      'text':
+          'Great UI design and completely ad-free. The offline functionality is perfect when traveling through remote highways with sketchy network coverage. Saved me multiple times.',
       'tag': 'Verified Commuter',
       'date': '3 days ago',
       'categories': ['All', 'Offline 📶', 'UI/UX 🎨'],
@@ -57,7 +60,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       'name': 'Rajesh Kumar',
       'avatar': '',
       'rating': 5.0,
-      'text': 'As a cab driver, I need to know the exact fuel costs before quoting rates to clients. This app saves me hours of manual calculations. The mileage customization is spot on!',
+      'text':
+          'As a cab driver, I need to know the exact fuel costs before quoting rates to clients. This app saves me hours of manual calculations. The mileage customization is spot on!',
       'tag': 'Verified Fleet Owner',
       'date': '2 weeks ago',
       'categories': ['All', 'Accuracy 🎯', 'Commuters 🚗'],
@@ -66,7 +70,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       'name': 'Sneha Reddy',
       'avatar': '',
       'rating': 5.0,
-      'text': 'Super lightweight app! It doesn\'t take space, loads in a second, and works perfectly without any internet. Best app for Indian roads.',
+      'text':
+          'Super lightweight app! It doesn\'t take space, loads in a second, and works perfectly without any internet. Best app for Indian roads.',
       'tag': 'Verified Commuter',
       'date': '5 days ago',
       'categories': ['All', 'Offline 📶', 'UI/UX 🎨'],
@@ -75,7 +80,8 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       'name': 'Vikram Singh',
       'avatar': '',
       'rating': 4.8,
-      'text': 'The app works flawlessly offline. Very clean UI and extremely helpful support. Adding custom fuel prices is a neat touch!',
+      'text':
+          'The app works flawlessly offline. Very clean UI and extremely helpful support. Adding custom fuel prices is a neat touch!',
       'tag': 'Verified Commuter',
       'date': '1 month ago',
       'categories': ['All', 'Offline 📶', 'Accuracy 🎯'],
@@ -107,7 +113,9 @@ class _ReviewsSectionState extends State<ReviewsSection> {
     final double width = MediaQuery.of(context).size.width;
     final bool isMobile = width < 768;
     final bool isTablet = width >= 768 && width < 1050;
-    final double horizontalPadding = width > 1200 ? (width - 1200) / 2 + 24 : 24;
+    final double horizontalPadding = width > 1200
+        ? (width - 1200) / 2 + 24
+        : 24;
 
     // Filter reviews
     final filteredReviews = _reviews.where((review) {
@@ -227,7 +235,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
             ),
           ),
           const SizedBox(height: 12),
-          
+
           // Big Rating Display
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -253,15 +261,23 @@ class _ReviewsSectionState extends State<ReviewsSection> {
               ),
             ],
           ),
-          
+
           // Stars Row
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(5, (index) {
               if (index < 4) {
-                return const Icon(Icons.star_rounded, color: Color(0xFFFFB300), size: 28);
+                return const Icon(
+                  Icons.star_rounded,
+                  color: Color(0xFFFFB300),
+                  size: 28,
+                );
               } else {
-                return const Icon(Icons.star_half_rounded, color: Color(0xFFFFB300), size: 28);
+                return const Icon(
+                  Icons.star_half_rounded,
+                  color: Color(0xFFFFB300),
+                  size: 28,
+                );
               }
             }),
           ),
@@ -274,7 +290,7 @@ class _ReviewsSectionState extends State<ReviewsSection> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          
+
           const SizedBox(height: 32),
           const Divider(height: 1, color: Color(0xFFF3F4F6)),
           const SizedBox(height: 24),
@@ -289,41 +305,49 @@ class _ReviewsSectionState extends State<ReviewsSection> {
           _buildBreakdownRow(2, 0.01, '2'),
           const SizedBox(height: 10),
           _buildBreakdownRow(1, 0.00, '0'),
-          
+
           const SizedBox(height: 32),
-          
+
           // Call to Action
           ElevatedButton.icon(
-            onPressed: _launchPlayStore,
-            icon: Image.asset(
-              'assets/icon/playstore_logo.png',
-              width: 16,
-              height: 16,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stack) => const Icon(
-                Icons.star_outline_rounded,
-                color: Colors.white,
-                size: 16,
+                onPressed: _launchPlayStore,
+                icon: Image.asset(
+                  'assets/icon/playstore_logo.png',
+                  width: 16,
+                  height: 16,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stack) => const Icon(
+                    Icons.star_outline_rounded,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
+                label: Text(
+                  'Write a Review',
+                  style: GoogleFonts.dmSans(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 16,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              )
+              .animate(onPlay: (controller) => controller.repeat(reverse: true))
+              .shimmer(
+                delay: 3.seconds,
+                duration: 1.5.seconds,
+                color: Colors.white24,
               ),
-            ),
-            label: Text(
-              'Write a Review',
-              style: GoogleFonts.dmSans(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: Colors.white,
-              elevation: 0,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-          ).animate(onPlay: (controller) => controller.repeat(reverse: true))
-           .shimmer(delay: 3.seconds, duration: 1.5.seconds, color: Colors.white24),
         ],
       ),
     ).animate().scale(duration: 400.ms, curve: Curves.easeOutCubic);
@@ -358,7 +382,9 @@ class _ReviewsSectionState extends State<ReviewsSection> {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 1000),
                     curve: Curves.easeOutCubic,
-                    width: _animateProgress ? constraints.maxWidth * percentage : 0,
+                    width: _animateProgress
+                        ? constraints.maxWidth * percentage
+                        : 0,
                     height: 8,
                     decoration: BoxDecoration(
                       color: const Color(0xFFFFB300),
@@ -405,13 +431,13 @@ class _ReviewsSectionState extends State<ReviewsSection> {
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
               decoration: BoxDecoration(
-                color: isSelected 
-                    ? AppColors.primary 
+                color: isSelected
+                    ? AppColors.primary
                     : AppColors.cardBackground,
                 borderRadius: BorderRadius.circular(30),
                 border: Border.all(
-                  color: isSelected 
-                      ? AppColors.primary 
+                  color: isSelected
+                      ? AppColors.primary
                       : AppColors.divider.withValues(alpha: 0.8),
                   width: 1,
                 ),
@@ -439,7 +465,10 @@ class _ReviewsSectionState extends State<ReviewsSection> {
     ).animate().fadeIn(duration: 400.ms);
   }
 
-  Widget _buildReviewsGrid(List<Map<String, dynamic>> filteredReviews, {required bool isMobile}) {
+  Widget _buildReviewsGrid(
+    List<Map<String, dynamic>> filteredReviews, {
+    required bool isMobile,
+  }) {
     if (filteredReviews.isEmpty) {
       return Center(
         child: Padding(
@@ -484,15 +513,16 @@ class _ReviewsSectionState extends State<ReviewsSection> {
       itemBuilder: (context, index) {
         final review = filteredReviews[index];
         return ReviewCard(
-          name: review['name'] as String,
-          avatarUrl: review['avatar'] as String,
-          rating: review['rating'] as double,
-          reviewText: review['text'] as String,
-          userTag: review['tag'] as String,
-          date: review['date'] as String,
-        ).animate(key: ValueKey(review['name']))
-         .fadeIn(duration: 400.ms, delay: (index * 50).ms)
-         .slideY(begin: 0.08, end: 0, curve: Curves.easeOutCubic);
+              name: review['name'] as String,
+              avatarUrl: review['avatar'] as String,
+              rating: review['rating'] as double,
+              reviewText: review['text'] as String,
+              userTag: review['tag'] as String,
+              date: review['date'] as String,
+            )
+            .animate(key: ValueKey(review['name']))
+            .fadeIn(duration: 400.ms, delay: (index * 50).ms)
+            .slideY(begin: 0.08, end: 0, curve: Curves.easeOutCubic);
       },
     );
   }

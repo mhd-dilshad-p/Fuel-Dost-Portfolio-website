@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class Interactive3DPhone extends StatefulWidget {
   final Widget child;
 
-  const Interactive3DPhone({
-    super.key,
-    required this.child,
-  });
+  const Interactive3DPhone({super.key, required this.child});
 
   @override
   State<Interactive3DPhone> createState() => _Interactive3DPhoneState();

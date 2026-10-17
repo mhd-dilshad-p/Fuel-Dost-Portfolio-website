@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../constants/colors.dart';
 
 class AppLogo extends StatelessWidget {
   final double? height;
@@ -21,7 +20,9 @@ class AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double computedHeight = height ?? 48;
-    final double iconSize = useWhiteBackground ? computedHeight - 20 : computedHeight;
+    final double iconSize = useWhiteBackground
+        ? computedHeight - 20
+        : computedHeight;
 
     Widget logoIcon = ClipRRect(
       borderRadius: BorderRadius.circular(12),
@@ -63,10 +64,7 @@ class AppLogo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         logoIcon,
-        if (showText) ...[
-          const SizedBox(width: 12),
-          logoText,
-        ],
+        if (showText) ...[const SizedBox(width: 12), logoText],
       ],
     );
 
@@ -78,7 +76,7 @@ class AppLogo extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.06),
+              color: Colors.black.withValues(alpha: 0.06),
               blurRadius: 16,
               offset: const Offset(0, 8),
             ),

@@ -9,18 +9,14 @@ class StatsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final bool isMobile = width < 768;
-    final double horizontalPadding = width > 1200 ? (width - 1200) / 2 + 24 : 24;
+    final double horizontalPadding = width > 1200
+        ? (width - 1200) / 2 + 24
+        : 24;
 
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(
-        horizontal: horizontalPadding,
-        vertical: 60,
-      ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 60,
-        horizontal: 32,
-      ),
+      margin: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 60),
+      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 32),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFF1B7A3E), Color(0xFF0F4E27)],
@@ -83,11 +79,7 @@ class StatsSection extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: 80,
-                  width: 1,
-                  color: Colors.white24,
-                ),
+                Container(height: 80, width: 1, color: Colors.white24),
                 Expanded(
                   child: _buildStatWrapper(
                     const AnimatedStat(
@@ -98,11 +90,7 @@ class StatsSection extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: 80,
-                  width: 1,
-                  color: Colors.white24,
-                ),
+                Container(height: 80, width: 1, color: Colors.white24),
                 Expanded(
                   child: _buildStatWrapper(
                     const AnimatedStat(
@@ -118,6 +106,9 @@ class StatsSection extends StatelessWidget {
   }
 
   Widget _buildStatWrapper(Widget stat) {
-    return stat.animate().fadeIn(duration: 800.ms).scale(begin: const Offset(0.9, 0.9));
+    return stat
+        .animate()
+        .fadeIn(duration: 800.ms)
+        .scale(begin: const Offset(0.9, 0.9));
   }
 }

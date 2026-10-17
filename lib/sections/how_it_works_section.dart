@@ -11,7 +11,9 @@ class HowItWorksSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final bool isDesktop = width >= 1024;
-    final double horizontalPadding = width > 1200 ? (width - 1200) / 2 + 32 : 32;
+    final double horizontalPadding = width > 1200
+        ? (width - 1200) / 2 + 32
+        : 32;
 
     return Container(
       color: Colors.transparent,
@@ -26,9 +28,11 @@ class HowItWorksSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: AppColors.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: AppColors.primary.withOpacity(0.2)),
+              border: Border.all(
+                color: AppColors.primary.withValues(alpha: 0.2),
+              ),
             ),
             child: Text(
               'SIMPLE & FAST',
@@ -76,27 +80,75 @@ class HowItWorksSection extends StatelessWidget {
           const SizedBox(height: 80),
 
           // Grid layout for steps
-          isDesktop 
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: _buildStepCard(context, '01', 'Choose Start & Destination', 'Enter your start location and destination. FuelDost instantly maps out the path, determines the exact driving distance.', AppStrings.howItWorksStep1, 0)),
-                  const SizedBox(width: 32),
-                  Expanded(child: _buildStepCard(context, '02', 'Set Vehicle & Fuel Price', 'Select one of your vehicle profiles with custom city/highway mileage, and input the local fuel price in your city.', AppStrings.howItWorksStep2, 1)),
-                  const SizedBox(width: 32),
-                  Expanded(child: _buildStepCard(context, '03', 'Compare Cost & Save', 'Review your estimated trip cost instantly. Save the trip details directly to your secure on-device history log.', AppStrings.howItWorksStep3, 2)),
-                ],
-              )
-            : Column(
-                children: [
-                  _buildStepCard(context, '01', 'Choose Start & Destination', 'Enter your start location and destination. FuelDost instantly maps out the path, determines the exact driving distance.', AppStrings.howItWorksStep1, 0),
-                  const SizedBox(height: 40),
-                  _buildStepCard(context, '02', 'Set Vehicle & Fuel Price', 'Select one of your vehicle profiles with custom city/highway mileage, and input the local fuel price in your city.', AppStrings.howItWorksStep2, 1),
-                  const SizedBox(height: 40),
-                  _buildStepCard(context, '03', 'Compare Cost & Save', 'Review your estimated trip cost instantly. Save the trip details directly to your secure on-device history log.', AppStrings.howItWorksStep3, 2),
-                ],
-              ),
-          
+          isDesktop
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: _buildStepCard(
+                        context,
+                        '01',
+                        'Choose Start & Destination',
+                        'Enter your start location and destination. FuelDost instantly maps out the path, determines the exact driving distance.',
+                        AppStrings.howItWorksStep1,
+                        0,
+                      ),
+                    ),
+                    const SizedBox(width: 32),
+                    Expanded(
+                      child: _buildStepCard(
+                        context,
+                        '02',
+                        'Set Vehicle & Fuel Price',
+                        'Select one of your vehicle profiles with custom city/highway mileage, and input the local fuel price in your city.',
+                        AppStrings.howItWorksStep2,
+                        1,
+                      ),
+                    ),
+                    const SizedBox(width: 32),
+                    Expanded(
+                      child: _buildStepCard(
+                        context,
+                        '03',
+                        'Compare Cost & Save',
+                        'Review your estimated trip cost instantly. Save the trip details directly to your secure on-device history log.',
+                        AppStrings.howItWorksStep3,
+                        2,
+                      ),
+                    ),
+                  ],
+                )
+              : Column(
+                  children: [
+                    _buildStepCard(
+                      context,
+                      '01',
+                      'Choose Start & Destination',
+                      'Enter your start location and destination. FuelDost instantly maps out the path, determines the exact driving distance.',
+                      AppStrings.howItWorksStep1,
+                      0,
+                    ),
+                    const SizedBox(height: 40),
+                    _buildStepCard(
+                      context,
+                      '02',
+                      'Set Vehicle & Fuel Price',
+                      'Select one of your vehicle profiles with custom city/highway mileage, and input the local fuel price in your city.',
+                      AppStrings.howItWorksStep2,
+                      1,
+                    ),
+                    const SizedBox(height: 40),
+                    _buildStepCard(
+                      context,
+                      '03',
+                      'Compare Cost & Save',
+                      'Review your estimated trip cost instantly. Save the trip details directly to your secure on-device history log.',
+                      AppStrings.howItWorksStep3,
+                      2,
+                    ),
+                  ],
+                ),
+
           const SizedBox(height: 120),
 
           // Bottom Info Bar
@@ -106,7 +158,14 @@ class HowItWorksSection extends StatelessWidget {
     );
   }
 
-  Widget _buildStepCard(BuildContext context, String number, String title, String desc, String imagePath, int index) {
+  Widget _buildStepCard(
+    BuildContext context,
+    String number,
+    String title,
+    String desc,
+    String imagePath,
+    int index,
+  ) {
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
@@ -115,7 +174,7 @@ class HowItWorksSection extends StatelessWidget {
         border: Border.all(color: AppColors.divider),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 24,
             offset: const Offset(0, 12),
           ),
@@ -126,15 +185,22 @@ class HowItWorksSection extends StatelessWidget {
         children: [
           // Image
           Container(
-            height: 280,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Image.asset(imagePath, fit: BoxFit.contain, filterQuality: FilterQuality.high),
-            ),
-          ).animate().fadeIn(delay: (200 + (index * 100)).ms).scale(begin: const Offset(0.95, 0.95), curve: Curves.easeOut),
+                height: 280,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              )
+              .animate()
+              .fadeIn(delay: (200 + (index * 100)).ms)
+              .scale(begin: const Offset(0.95, 0.95), curve: Curves.easeOut),
           const SizedBox(height: 40),
           // Step Number
           Container(
@@ -154,7 +220,10 @@ class HowItWorksSection extends StatelessWidget {
                 ),
               ),
             ),
-          ).animate().scale(delay: (300 + (index * 100)).ms, curve: Curves.easeOutBack),
+          ).animate().scale(
+            delay: (300 + (index * 100)).ms,
+            curve: Curves.easeOutBack,
+          ),
           const SizedBox(height: 24),
           // Title
           Text(
@@ -192,7 +261,7 @@ class HowItWorksSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: AppColors.primary.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -238,7 +307,7 @@ class HowItWorksSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: AppColors.primary.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -277,45 +346,47 @@ class HowItWorksSection extends StatelessWidget {
     );
 
     return Container(
-      width: double.infinity,
-      constraints: const BoxConstraints(maxWidth: 1000),
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(32),
-        border: Border.all(color: AppColors.divider),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
+          width: double.infinity,
+          constraints: const BoxConstraints(maxWidth: 1000),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+          decoration: BoxDecoration(
+            color: AppColors.cardBackground,
+            borderRadius: BorderRadius.circular(32),
+            border: Border.all(color: AppColors.divider),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.02),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: isDesktop
-          ? Row(
-              children: [
-                privateSecureCol,
-                Container(
-                  width: 1,
-                  height: 80,
-                  color: AppColors.divider,
-                  margin: const EdgeInsets.symmetric(horizontal: 40),
+          child: isDesktop
+              ? Row(
+                  children: [
+                    privateSecureCol,
+                    Container(
+                      width: 1,
+                      height: 80,
+                      color: AppColors.divider,
+                      margin: const EdgeInsets.symmetric(horizontal: 40),
+                    ),
+                    worksOfflineCol,
+                  ],
+                )
+              : Column(
+                  children: [
+                    privateSecureCol,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 32.0),
+                      child: Divider(color: AppColors.divider, height: 1),
+                    ),
+                    worksOfflineCol,
+                  ],
                 ),
-                worksOfflineCol,
-              ],
-            )
-          : Column(
-              children: [
-                privateSecureCol,
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: Divider(color: AppColors.divider, height: 1),
-                ),
-                worksOfflineCol,
-              ],
-            ),
-    ).animate().fadeIn(duration: 600.ms, delay: 500.ms).slideY(begin: 0.2, end: 0);
+        )
+        .animate()
+        .fadeIn(duration: 600.ms, delay: 500.ms)
+        .slideY(begin: 0.2, end: 0);
   }
 }
-

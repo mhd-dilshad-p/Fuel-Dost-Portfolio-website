@@ -17,17 +17,21 @@ class MyApp extends StatelessWidget {
       title: 'FuelDost - Know Your Fuel Cost Before You Leave Home',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.dark,
+        useMaterial3: true,
+        brightness: Brightness.light,
         scaffoldBackgroundColor: AppColors.background,
         primaryColor: AppColors.primary,
-        colorScheme: const ColorScheme.dark(
+        colorScheme: const ColorScheme.light(
           primary: AppColors.primary,
           secondary: AppColors.accent,
-          surface: AppColors.background,
+          surface: Colors.white,
+          error: Color(0xFFDC2626),
         ),
-        textTheme: GoogleFonts.dmSansTextTheme(
-          ThemeData.dark().textTheme,
-        ),
+        textTheme: GoogleFonts.dmSansTextTheme(ThemeData.light().textTheme)
+            .apply(
+              bodyColor: AppColors.textPrimary,
+              displayColor: AppColors.textPrimary,
+            ),
       ),
       builder: (context, child) => ResponsiveBreakpoints.builder(
         child: child!,

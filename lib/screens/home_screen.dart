@@ -23,7 +23,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ItemScrollController _itemScrollController = ItemScrollController();
-  final ItemPositionsListener _itemPositionsListener = ItemPositionsListener.create();
+  final ItemPositionsListener _itemPositionsListener =
+      ItemPositionsListener.create();
   bool _isScrolled = false;
 
   @override
@@ -34,7 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _itemPositionsListener.itemPositions.removeListener(_onScrollPositionsChanged);
+    _itemPositionsListener.itemPositions.removeListener(
+      _onScrollPositionsChanged,
+    );
     super.dispose();
   }
 
@@ -43,7 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
     if (positions.isNotEmpty) {
       final first = positions.first;
       // If the first visible item is index 0 and its trailing edge is mostly visible
-      final isScrolled = first.index > 0 || (first.index == 0 && first.itemLeadingEdge < -0.05);
+      final isScrolled =
+          first.index > 0 ||
+          (first.index == 0 && first.itemLeadingEdge < -0.05);
       if (isScrolled != _isScrolled) {
         setState(() {
           _isScrolled = isScrolled;
@@ -76,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      endDrawer: width < 768 ? _buildMobileDrawer() : null,
+      endDrawer: width < 1000 ? _buildMobileDrawer() : null,
       body: Stack(
         children: [
           // Background Gradient Glows
@@ -134,37 +139,55 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildMobileDrawer() {
     return Drawer(
-      backgroundColor: AppColors.cardBackground,
+      backgroundColor: Colors.white,
       child: SafeArea(
         child: Column(
           children: [
-            // Drawer Header
+            // Drawer Header with Close Button
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
-              child: const AppLogo(height: 50, fontSize: 20),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 24.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const AppLogo(height: 48, fontSize: 18),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.close,
+                      color: AppColors.textPrimary,
+                      size: 24,
+                    ),
+                    tooltip: 'Close navigation menu',
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+              ),
             ),
-            const Divider(color: Colors.white10),
+            const Divider(color: AppColors.divider, height: 1),
+            const SizedBox(height: 12),
 
             // Navigation Links
             _buildDrawerItem('Features', () {
-              Navigator.pop(context);
+              Navigator.of(context).pop();
               _scrollToIndex(1);
             }),
             _buildDrawerItem('How It Works', () {
-              Navigator.pop(context);
+              Navigator.of(context).pop();
               _scrollToIndex(2);
             }),
             _buildDrawerItem('Screenshots', () {
-              Navigator.pop(context);
+              Navigator.of(context).pop();
               _scrollToIndex(3);
             }),
             _buildDrawerItem('Reviews', () {
-              Navigator.pop(context);
+              Navigator.of(context).pop();
               _scrollToIndex(4);
             }),
 
             const Spacer(),
-            
+
             // CTA Button
             Padding(
               padding: const EdgeInsets.all(24.0),
@@ -172,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    Navigator.pop(context);
+                    Navigator.of(context).pop();
                     final Uri url = Uri.parse(AppStrings.playStoreUrl);
                     if (await canLaunchUrl(url)) {
                       await launchUrl(url);
@@ -204,15 +227,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildDrawerItem(String title, VoidCallback onTap) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 24.0,
+        vertical: 4.0,
+      ),
       title: Text(
         title,
         style: GoogleFonts.dmSans(
-          color: Colors.white.withValues(alpha: 0.8),
+          color: AppColors.textPrimary,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),
+      trailing: const Icon(Icons.chevron_right, size: 20, color: Colors.grey),
       onTap: onTap,
     );
   }

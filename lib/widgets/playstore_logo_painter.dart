@@ -7,10 +7,7 @@ class PlayStoreLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size(size, size),
-      painter: PlayStorePainter(),
-    );
+    return CustomPaint(size: Size(size, size), painter: PlayStorePainter());
   }
 }
 
@@ -30,12 +27,12 @@ class PlayStorePainter extends CustomPainter {
     // Bottom Green block: Polygon (0, h*0.95) -> (w*0.5, h*0.5) -> (w, h*0.5)
     // Right Yellow block: Polygon (w*0.5, h*0.5) -> (w*0.8, h*0.35) -> (w, h*0.5) -> (w*0.8, h*0.65) - wait,
     // Google play actually is:
-    // Triangular shape. 
+    // Triangular shape.
     // Left blue side: Path from top-left, bottom-left, to center-right.
     // Red side: Top-left to top-right to center.
     // Green side: Bottom-left to bottom-right to center.
     // Yellow side: Right-most triangle.
-    
+
     // Let's paint them accurately:
     final Paint paint = Paint()..style = PaintingStyle.fill;
 

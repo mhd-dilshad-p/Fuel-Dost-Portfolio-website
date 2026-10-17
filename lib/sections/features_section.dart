@@ -12,7 +12,9 @@ class FeaturesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final bool isDesktop = width >= 1024;
-    final double horizontalPadding = width > 1200 ? (width - 1200) / 2 + 32 : 32;
+    final double horizontalPadding = width > 1200
+        ? (width - 1200) / 2 + 32
+        : 32;
 
     return Container(
       color: Colors.transparent,
@@ -79,7 +81,8 @@ class FeaturesSection extends StatelessWidget {
             badgeText: 'ACCURATE PRICING',
             lottiePath: 'assets/icon/fuel.json',
             title: 'Manual Fuel Price Entry',
-            desc: 'Enter your local fuel price for 100% accurate results — no outdated data!',
+            desc:
+                'Enter your local fuel price for 100% accurate results — no outdated data!',
             imagePath: AppStrings.featureManualFuelPrice,
             imageLeft: false,
             isDesktop: isDesktop,
@@ -139,7 +142,8 @@ class FeaturesSection extends StatelessWidget {
             badgeText: 'MADE FOR INDIA',
             lottiePath: 'assets/icon/indian flag.json',
             title: 'Works Offline - Built for India',
-            desc: 'No internet needed. No login. No account. Just open and calculate!',
+            desc:
+                'No internet needed. No login. No account. Just open and calculate!',
             imagePath: AppStrings.featureWorksOffline,
             imageLeft: false,
             isDesktop: isDesktop,
@@ -177,10 +181,7 @@ class FeaturesSection extends StatelessWidget {
           SizedBox(
             width: 200,
             height: 200,
-            child: Lottie.asset(
-              lottiePath,
-              fit: BoxFit.contain,
-            ),
+            child: Lottie.asset(lottiePath, fit: BoxFit.contain),
           ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2, end: 0)
         else if (badgeEmoji != null)
           Text(
@@ -189,133 +190,164 @@ class FeaturesSection extends StatelessWidget {
           ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2, end: 0),
         const SizedBox(height: 20),
         Text(
-          title,
-          style: GoogleFonts.sora(
-            color: const Color(0xFF111827),
-            fontSize: isDesktop ? 44 : 32,
-            fontWeight: FontWeight.w800,
-            height: 1.2,
-            letterSpacing: -1,
-          ),
-        ).animate().fadeIn(delay: 100.ms, duration: 600.ms).slideY(begin: 0.2, end: 0),
+              title,
+              style: GoogleFonts.sora(
+                color: const Color(0xFF111827),
+                fontSize: isDesktop ? 44 : 32,
+                fontWeight: FontWeight.w800,
+                height: 1.2,
+                letterSpacing: -1,
+              ),
+            )
+            .animate()
+            .fadeIn(delay: 100.ms, duration: 600.ms)
+            .slideY(begin: 0.2, end: 0),
         const SizedBox(height: 16),
         Text(
-          desc,
-          style: GoogleFonts.dmSans(
-            color: const Color(0xFF4B5563),
-            fontSize: 20,
-            height: 1.6,
-          ),
-        ).animate().fadeIn(delay: 200.ms, duration: 600.ms).slideY(begin: 0.2, end: 0),
+              desc,
+              style: GoogleFonts.dmSans(
+                color: const Color(0xFF4B5563),
+                fontSize: 20,
+                height: 1.6,
+              ),
+            )
+            .animate()
+            .fadeIn(delay: 200.ms, duration: 600.ms)
+            .slideY(begin: 0.2, end: 0),
         const SizedBox(height: 32),
         ...bullets.asMap().entries.map((entry) {
           int idx = entry.key;
           String bullet = entry.value;
           return Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 2),
-                  padding: const EdgeInsets.all(6),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFE8F5E9),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.check_rounded,
-                    color: Color(0xFF2E7D32),
-                    size: 18,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Text(
-                    bullet,
-                    style: GoogleFonts.dmSans(
-                      color: const Color(0xFF374151),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      height: 1.5,
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 2),
+                      padding: const EdgeInsets.all(6),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFE8F5E9),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.check_rounded,
+                        color: Color(0xFF2E7D32),
+                        size: 18,
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        bullet,
+                        style: GoogleFonts.dmSans(
+                          color: const Color(0xFF374151),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          height: 1.5,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ).animate().fadeIn(delay: (300 + (idx * 100)).ms, duration: 600.ms).slideX(begin: 0.1, end: 0);
+              )
+              .animate()
+              .fadeIn(delay: (300 + (idx * 100)).ms, duration: 600.ms)
+              .slideX(begin: 0.1, end: 0);
         }),
       ],
     );
 
-    Widget imageContent = Container(
-      constraints: BoxConstraints(
-        maxHeight: isDesktop ? 600 : 450,
-        maxWidth: 600,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primary.withOpacity(0.08),
-            blurRadius: 40,
-            offset: const Offset(0, 20),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(32),
-        child: Image.asset(
-          imagePath,
-          fit: BoxFit.contain,
-          filterQuality: FilterQuality.high,
-        ),
-      ),
-    ).animate().fadeIn(duration: 800.ms).scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1), curve: Curves.easeOutQuart);
+    Widget imageContent =
+        Container(
+              constraints: BoxConstraints(
+                maxHeight: isDesktop ? 600 : 450,
+                maxWidth: 600,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(32),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withValues(alpha: 0.08),
+                    blurRadius: 40,
+                    offset: const Offset(0, 20),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(32),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            )
+            .animate()
+            .fadeIn(duration: 800.ms)
+            .scale(
+              begin: const Offset(0.95, 0.95),
+              end: const Offset(1, 1),
+              curve: Curves.easeOutQuart,
+            );
 
     if (isDesktop) {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: imageLeft
             ? [
-                Expanded(flex: 5, child: Align(alignment: Alignment.centerRight, child: Padding(padding: const EdgeInsets.only(right: 60), child: imageContent))),
-                Expanded(flex: 5, child: Padding(padding: const EdgeInsets.only(left: 40), child: textContent)),
+                Expanded(
+                  flex: 5,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 60),
+                      child: imageContent,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: textContent,
+                  ),
+                ),
               ]
             : [
-                Expanded(flex: 5, child: Padding(padding: const EdgeInsets.only(right: 40), child: textContent)),
-                Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Padding(padding: const EdgeInsets.only(left: 60), child: imageContent))),
+                Expanded(
+                  flex: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 40),
+                    child: textContent,
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 60),
+                      child: imageContent,
+                    ),
+                  ),
+                ),
               ],
       );
     } else {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          imageContent,
-          const SizedBox(height: 56),
-          textContent,
-        ],
+        children: [imageContent, const SizedBox(height: 56), textContent],
       );
     }
   }
 
   Widget _buildPerfectForCard(double width, bool isDesktop) {
     final List<Map<String, String>> perfectForItems = [
-      {
-        'title': 'Daily commuters',
-        'image': AppStrings.perfectForCommuters,
-      },
-      {
-        'title': 'Cab & auto drivers',
-        'image': AppStrings.perfectForCab,
-      },
-      {
-        'title': 'Delivery agents',
-        'image': AppStrings.perfectForDelivery,
-      },
-      {
-        'title': 'Road trip planners',
-        'image': AppStrings.perfectForRoadTrip,
-      },
+      {'title': 'Daily commuters', 'image': AppStrings.perfectForCommuters},
+      {'title': 'Cab & auto drivers', 'image': AppStrings.perfectForCab},
+      {'title': 'Delivery agents', 'image': AppStrings.perfectForDelivery},
+      {'title': 'Road trip planners', 'image': AppStrings.perfectForRoadTrip},
     ];
 
     return Container(
@@ -326,12 +358,12 @@ class FeaturesSection extends StatelessWidget {
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(32),
         border: Border.all(
-          color: AppColors.primary.withOpacity(0.15),
+          color: AppColors.primary.withValues(alpha: 0.15),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 30,
             offset: const Offset(0, 15),
           ),
@@ -343,7 +375,7 @@ class FeaturesSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
+              color: AppColors.primary.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -351,7 +383,11 @@ class FeaturesSection extends StatelessWidget {
               color: AppColors.primary,
               size: 32,
             ),
-          ).animate().scale(delay: 200.ms, duration: 600.ms, curve: Curves.easeOutBack),
+          ).animate().scale(
+            delay: 200.ms,
+            duration: 600.ms,
+            curve: Curves.easeOutBack,
+          ),
           const SizedBox(height: 24),
           Text(
             'Perfect For Everyone',
@@ -367,7 +403,13 @@ class FeaturesSection extends StatelessWidget {
             spacing: 24,
             runSpacing: 24,
             alignment: WrapAlignment.center,
-            children: perfectForItems.map((item) => IntrinsicWidth(child: _buildImageCheckItem(item['title']!, item['image']!))).toList(),
+            children: perfectForItems
+                .map(
+                  (item) => IntrinsicWidth(
+                    child: _buildImageCheckItem(item['title']!, item['image']!),
+                  ),
+                )
+                .toList(),
           ).animate().fadeIn(delay: 400.ms),
         ],
       ),
@@ -384,7 +426,7 @@ class FeaturesSection extends StatelessWidget {
         border: Border.all(color: AppColors.divider),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: Colors.black.withValues(alpha: 0.03),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),
@@ -394,11 +436,7 @@ class FeaturesSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            imagePath,
-            height: 80,
-            fit: BoxFit.contain,
-          ),
+          Image.asset(imagePath, height: 80, fit: BoxFit.contain),
           const SizedBox(height: 20),
           Text(
             text,
